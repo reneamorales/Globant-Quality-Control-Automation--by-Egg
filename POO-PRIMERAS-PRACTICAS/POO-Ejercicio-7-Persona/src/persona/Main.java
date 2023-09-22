@@ -1,4 +1,3 @@
-
 package persona;
 
 import Entidad.Persona;
@@ -14,20 +13,41 @@ public class Main {
 
         ServicioPersona cp = new ServicioPersona();
 
-        Persona personas[]= new Persona[4];
-        
+        //Persona personas[] = new Persona[4];
+        /*
         personas[0]= cp.crearPersona();
         personas[1]= cp.crearPersona();
         personas[2]= cp.crearPersona();
-        personas[3]= cp.crearPersona();
+        personas[3]= cp.crearPersona();*/
+        Persona persona1 = new Persona("Nick", 10, "varón", 36d, 1.10d);
+        /*
+        boolean ed = cp.esMayorDeEdad(persona1);
         
-        double debajoDeSuPeso = 0;
-        double enPesoIdeal = 0;
-        double porEncima = 0;
+        System.out.println("La persona es mayor de edad: " +  ed);
+         */
+        Persona personaNull = null;
 
-        double mayorEdad = 0;
-        double menorEdad = 0;
+        try {
+            boolean esMayor = cp.esMayorDeEdad(persona1);
+            //boolean esMayor = cp.esMayorDeEdad(personaNull);
+            System.out.println(esMayor);
 
+        } catch (NullPointerException a) {
+            System.out.println("Error! El objeto que has instanciado es nulo.");
+
+        } finally {
+            System.out.println("Saliendo del Try-catch");
+        }
+
+    }
+    /*
+    double debajoDeSuPeso = 0;
+    double enPesoIdeal = 0;
+    double porEncima = 0;
+
+    double mayorEdad = 0;
+    double menorEdad = 0;
+    /*
         for (Persona persona : personas) {
 
             int imc = cp.calcularIMC(persona);
@@ -65,7 +85,6 @@ public class Main {
         System.out.println("");
         System.out.println("El porcentaje de mayor edad es : " + mayorEdad / 4 * 100);
         System.out.println("El porcentaje de menor edad es : " + menorEdad / 4 * 100);
-
-    }
-
+     */
 }
+
