@@ -1,0 +1,7 @@
+# Ignorar los archivos de compilación y de construcción
+//build/
+/nbproject/
+
+# Ignorar los archivos de configuración del IDE
+/.idea/
+*.iml
