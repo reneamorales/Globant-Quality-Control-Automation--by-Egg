@@ -40,7 +40,7 @@ public class Main {
                 Salir = true;
             }
         } while (!Salir);
-        sap.mostrarListaAdopciones();
+        sap.mostrarListaAdopciones(personas);
     }
 
     public static void cargarPerros(Scanner read, ServiceAdopcionPerro sap, List<Perro> perros) {

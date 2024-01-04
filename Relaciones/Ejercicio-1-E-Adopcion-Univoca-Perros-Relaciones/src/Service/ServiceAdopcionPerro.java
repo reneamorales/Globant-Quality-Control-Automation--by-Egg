@@ -30,46 +30,62 @@ public class ServiceAdopcionPerro {
 
     public void adoptarEste(String PerroAdoptar, int dniPersona, List<Persona> personas) {
         System.out.println("Comparando valores:");
-        boolean encontrado= false;
-        
+        boolean encontrado = false;
+
         for (Persona p : personas) {
             int dni = p.getDocumento();
-            if (dni == dniPersona){
-                if(!adopciones.containsValue(dniPersona)) {
-                adopciones.put(PerroAdoptar, dniPersona);
-                System.out.println("Felicidades!" + p.getNombre() + " Haz adoptado a " +  PerroAdoptar+ ".");
-                }else{
+            if (dni == dniPersona) {
+                if (!adopciones.containsValue(dniPersona)) {
+                    adopciones.put(PerroAdoptar, dniPersona);
+                    System.out.println("Felicidades!" + p.getNombre() + " Haz adoptado a " + PerroAdoptar + ".");
+                } else {
                     System.out.println("Ya has adoptado un perro!");
                 }
-                encontrado= true;
+                encontrado = true;
                 break;
             }
-        }       
-        
-        
-        if(!encontrado){
-             System.out.println("¡Eres único! No eres de los que adoptan perritos, ¡tú adoptas gatitos!");
         }
-        
+
+        if (!encontrado) {
+            System.out.println("¡Eres único! No eres de los que adoptan perritos, ¡tú adoptas gatitos!");
+        }
+
     }
 
     public void mostrarListaDePerros(List<Perro> perros) {
-        int x=1;
+        int x = 1;
         for (Perro p : perros) {
             System.out.println(x + " :" + p.getNombre());
             x++;
         }
     }
 
-    public void mostrarListaAdopciones() {
+    public void mostrarListaAdopciones(List<Persona> personas) {
         System.out.println("Lista de Perros adoptados: ");
         for (Map.Entry<String, Integer> entry : adopciones.entrySet()) {
-            String key = entry.getKey();
-            Integer value = entry.getValue();
-            System.out.println("Perro: " + key + " Dueño: " + value);
+            String nombrePerro = entry.getKey();
+            Integer dni = entry.getValue();
+
+            Persona duenio = obtenerDuenio(dni, personas);
+
+            if (duenio != null) {
+
+                if (duenio != null) {
+                    System.out.println("El perro " + nombrePerro + " fue adoptado por " + duenio.getNombre() + " " + duenio.getApellido());
+                }
+            }
+            if (adopciones.isEmpty()) {
+                System.out.println("Aun no hay perros adoptados.");
+            }
         }
-        if(adopciones.isEmpty()){
-            System.out.println("Aun no hay perros adoptados.");
+    }
+
+    public Persona obtenerDuenio(Integer dni, List<Persona> personas) {
+        for (Persona persona : personas) {
+            if (persona.getDocumento() == dni) {
+                return persona;
+            }
         }
+        return null;
     }
 }
