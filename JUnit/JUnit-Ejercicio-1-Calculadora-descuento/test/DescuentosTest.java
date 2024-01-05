@@ -39,8 +39,10 @@ public class DescuentosTest {
 
     @Test
     public void deberiaDevolverDescuento() {
+        //Se obtiene de retorno el valor de descuento que se aplica.
         //Compara si el valor expected ES igual al valor actual.
         assertEquals(10, sd.aplicarDescuento(new Descuentos(100, 10)), 0);
+        assertEquals(45, sd.aplicarDescuento(new Descuentos(150, 30)), 0);
         //Compara si el valor expected NO es igual al valor actual.
         assertNotEquals(0, sd.aplicarDescuento(new Descuentos(150, 30)), 0);
         assertEquals(0, sd.aplicarDescuento(new Descuentos(150, 60)), 0);

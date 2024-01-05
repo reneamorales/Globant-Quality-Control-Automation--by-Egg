@@ -22,15 +22,18 @@ public class TaskManagerTest {
 
     @BeforeClass
     public static void setUpClass() {
+        
     }
 
     @AfterClass
     public static void tearDownClass() {
+        
     }
 
     @Before
     public void setUp() {
         tms = new TaskManager();
+        tms.addTask("Tarea 1");
     }
 
     @After
@@ -39,21 +42,23 @@ public class TaskManagerTest {
 
     @Test
     public void deberiaAgregarTarea() {
-        tms.addTask("Tarea 1");
         assertEquals(1, tms.getTask().size());
         assertTrue(tms.getTask().contains("Tarea 1"));
     }
 
     @Test
     public void deberiaRemoverTarea() {
-        tms.addTask("Tarea 1");
+        List<String> submittedTasks = tms.getTask();
+        assertEquals(true, submittedTasks.contains("Tarea 1"));
         tms.removeTask("Tarea 1");
         assertEquals(0, tms.getTask().size());
+        assertEquals(false, submittedTasks.contains("Tarea 1"));
+        
     }
 
     @Test
     public void deberiaDevolvertTodasLasTareas() {
-        tms.addTask("Tarea 1");
+  
         tms.addTask("Tarea 2");
         tms.addTask("Tarea 3");
         List<String> tareas = tms.getTask();
@@ -62,6 +67,5 @@ public class TaskManagerTest {
         assertTrue(tareas.contains("Tarea 2"));
         assertTrue(tareas.contains("Tarea 3"));
         assertFalse(tareas.contains("Tarea 4"));
-
     }
 }

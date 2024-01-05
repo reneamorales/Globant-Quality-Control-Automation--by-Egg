@@ -18,17 +18,26 @@ public class ValidatorService {
     }
 
     public boolean contieneCararacterEspecial(PasswordValidator pv) {
-        boolean CaracterEspecial = false;
+        boolean conCaracterEspecial = false;
         String caracteresEspeciales = "!@#$%^&*()-_=+{}[]\\|;:";
 
         for (int i = 0; i < caracteresEspeciales.length(); i++) {
             for (int j = 0; j < pv.getContraseña().length(); j++) {
                 if (pv.getContraseña().charAt(j) == caracteresEspeciales.charAt(i)) {
-                    CaracterEspecial = true;
+                    conCaracterEspecial = true;
+                    break;
                 }
             }
         }
-        return CaracterEspecial;
+        return conCaracterEspecial;
+    }
+    
+    public boolean contraseniaNula(PasswordValidator pv){
+        boolean nula= false;
+        if(pv == null || pv.getContraseña() == null || pv.getContraseña().equals("")){
+        nula=true;
+    }
+        return nula;
     }
     
     public boolean contraseniaAceptada(PasswordValidator pv){

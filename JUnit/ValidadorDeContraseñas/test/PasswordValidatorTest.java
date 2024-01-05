@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 import Entities.PasswordValidator;
 import ValidatorService.ValidatorService;
@@ -50,18 +45,20 @@ public class PasswordValidatorTest {
     public void deberiaIndicarQuecContieneCE() {
         assertEquals(true, (pvs.contieneCararacterEspecial(new PasswordValidator("Rene2023&"))));
     }
-    
+
     @Test
-    public void deberiaIndicarContraseniaCorrecta(){
+    public void deberiaIndicarContraseniaValida() {
         assertEquals(true, (pvs.contraseniaAceptada(new PasswordValidator("ReneMorales2023&"))));
-        //assertEquals(true, (pvs.contraseniaAceptada(new PasswordValidator("Rene2023&"))));
-        //assertEquals(true, (pvs.contraseniaAceptada(new PasswordValidator("ReneMorales2023")))); 
+        assertNotEquals(true, (pvs.contraseniaAceptada(new PasswordValidator("Rene2023&"))));
+        assertNotEquals(true, (pvs.contraseniaAceptada(new PasswordValidator("ReneMorales2023"))));
     }
+
     @Test
-    public void deberiaVerificarObjetoNoNulo(){
+    public void deberiaVerificarObjetoNoNulo() {
         assertNotNull(new PasswordValidator("ReneMorales2023&"));
+        assertEquals(true, (pvs.contraseniaNula(new PasswordValidator(null))));
+        assertEquals(false, (pvs.contraseniaNula(new PasswordValidator("Rene2023&"))));
+        //assertEquals(true, (pvs.contraseniaNula(new PasswordValidator("Rene2023&"))));
     }
-    
-    //Crear un metodo que valide que es nulo el objeto
 
 }
